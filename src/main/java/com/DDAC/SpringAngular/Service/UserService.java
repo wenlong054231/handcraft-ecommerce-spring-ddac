@@ -7,4 +7,6 @@ public interface UserService {
 
 	String addUser(UserSaveDTO userSaveDTO);
 
+	String addUser(UserDTO userDTO);
+
 }
