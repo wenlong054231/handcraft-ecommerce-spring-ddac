@@ -2,7 +2,6 @@ package com.DDAC.SpringAngular.DTO;
 
 public class UserSaveDTO {
 	
-	private int userid;
 	private String username;
 	private String password;
 	
@@ -16,15 +15,7 @@ public class UserSaveDTO {
 	public UserSaveDTO() {
 		super();
 	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
-
+ 
 	public String getUsername() {
 		return username;
 	}
@@ -43,7 +34,7 @@ public class UserSaveDTO {
 
 	@Override
 	public String toString() {
-		return "UserDTO [userid=" + userid + ", username=" + username + ", password=" + password + "]";
+		return "UserDTO [username=" + username + ", password=" + password + "]";
 	}
 	
 }

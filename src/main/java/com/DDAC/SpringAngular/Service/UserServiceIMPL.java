@@ -10,8 +10,11 @@ public class UserServiceIMPL implements UserService{
 	public String addUser(UserSaveDTO userSaveDTO) {
 		// TODO Auto-generated method stub
 		
-		User user = new User();
-		return null;
+		User user = new User(
+			userSaveDTO.getUsername(),
+			userSaveDTO.getPassword()
+		);
+	
 	}
 
 	
