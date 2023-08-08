@@ -7,14 +7,16 @@ public class UserSaveDTO {
 	private String firstname;
 	private String lastname;
 	private String email;
+	private String role;
 	
-	public UserSaveDTO(String firstname, String lastname, String username, String password, String email) {
+	public UserSaveDTO(String firstname, String lastname, String username, String password, String email, String role) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
 
 	public UserSaveDTO() {
@@ -60,11 +62,20 @@ public class UserSaveDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
-		return "User [firstname=" + firstname + ", lastname=" + lastname + ", username="
-				+ username + ", password=" + password + ", email=" + email + "]";
+		return "UserSaveDTO [username=" + username + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", email=" + email + ", role=" + role + "]";
 	}
+
 	
 }

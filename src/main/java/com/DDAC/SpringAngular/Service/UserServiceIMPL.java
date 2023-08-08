@@ -36,9 +36,10 @@ public class UserServiceIMPL implements UserService{
                 userSaveDTO.getLastname(),
                 userSaveDTO.getUsername(),
                 userSaveDTO.getPassword(),
-                userSaveDTO.getEmail()
+                userSaveDTO.getEmail(),
+                "customer"
             );
-
+            
             userRepo.save(user);
             
             return ResponseEntity.status(HttpStatus.CREATED).body("{\"success\": true}");

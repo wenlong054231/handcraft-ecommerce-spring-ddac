@@ -28,9 +28,11 @@ public class User {
 	
 	@Column(name = "user_email", length = 50)
 	private String email;
-
 	
-	public User(int userid, String firstname, String lastname, String username, String password, String email) {
+	@Column(name = "user_role", length = 50)
+	private String role;
+	
+	public User(int userid, String firstname, String lastname, String username, String password, String email, String role) {
 		super();
 		this.userid = userid;
 		this.firstname = firstname;
@@ -38,17 +40,19 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
 	
-	public User(String firstname, String lastname, String username, String password, String email) {
+	public User(String firstname, String lastname, String username, String password, String email, String role) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
-	
+
 	public User() {
 		super();
 	}
@@ -100,13 +104,21 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
-				+ username + ", password=" + password + ", email=" + email + "]";
+				+ username + ", password=" + password + ", email=" + email + ", role=" + role + "]";
 	}
-
+	
 	
 	
 }
