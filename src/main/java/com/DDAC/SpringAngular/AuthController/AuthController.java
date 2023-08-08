@@ -2,6 +2,7 @@ package com.DDAC.SpringAngular.AuthController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,6 +42,27 @@ public class AuthController {
 		return user;
 	}
 	
+	 @PostMapping("/login")
+	    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+	        // Validate login credentials and return appropriate response
+	        if (isValidLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
+	            return ResponseEntity.ok("{\"success\": true}");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false}");
+	        }
+	    }
+	 
+	private boolean isValidLogin(String username, String password) {
+		
+		User user = userService.findByUsername(username);
+	
+		 if (user != null && user.getPassword().equals(password)) {
+	            return true;
+	        }
+		
+		return false;
+	}
+
 	@PostMapping(path = "/update")
 	public String updateUser(@RequestBody UserUpdateDTO userUpdateDTO) {
 		

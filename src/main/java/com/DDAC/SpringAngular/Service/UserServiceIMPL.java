@@ -93,6 +93,11 @@ public class UserServiceIMPL implements UserService{
 		return null;
 	}
 
+	@Override
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
 	
 	
 }
