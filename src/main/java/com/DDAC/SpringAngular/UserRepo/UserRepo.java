@@ -8,5 +8,9 @@ import com.DDAC.SpringAngular.entities.User;
 @EnableJpaRepositories
 @Repository
 public interface UserRepo extends JpaRepository<User,Integer>{
+
+	boolean existsByUsername(String username);
+
+	boolean existsByEmail(String email);
 	
 }
