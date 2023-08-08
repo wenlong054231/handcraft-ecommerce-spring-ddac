@@ -42,27 +42,48 @@ public class AuthController {
 		return user;
 	}
 	
-	 @PostMapping("/login")
-	    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+	 @PostMapping("/custlogin")
+	    public ResponseEntity<String> loginCustomer(@RequestBody LoginRequest loginRequest) {
 	        // Validate login credentials and return appropriate response
-	        if (isValidLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
+	        if (isValidAdminLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
 	            return ResponseEntity.ok("{\"success\": true}");
 	        } else {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false}");
 	        }
 	    }
 	 
-	private boolean isValidLogin(String username, String password) {
+	 
+	private boolean isValidCustomerLogin(String username, String password) {
 		
 		User user = userService.findByUsername(username);
 	
-		 if (user != null && user.getPassword().equals(password)) {
+		 if (user != null && user.getPassword().equals(password) && user.getRole().equals("customer")) {
 	            return true;
 	        }
 		
 		return false;
 	}
-
+	
+	@PostMapping("/adminlogin")
+    public ResponseEntity<String> loginAdmin(@RequestBody LoginRequest loginRequest) {
+        // Validate login credentials and return appropriate response
+        if (isValidCustomerLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
+            return ResponseEntity.ok("{\"success\": true}");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false}");
+        }
+    }
+	private boolean isValidAdminLogin(String username, String password) {
+			
+			User user = userService.findByUsername(username);
+		
+			 if (user != null && user.getPassword().equals(password) && user.getRole().equals("admin")) {
+		            return true;
+		        }
+			
+			return false;
+		}
+	
 	@PostMapping(path = "/update")
 	public String updateUser(@RequestBody UserUpdateDTO userUpdateDTO) {
 		
