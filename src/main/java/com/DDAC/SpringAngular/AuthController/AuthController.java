@@ -45,7 +45,7 @@ public class AuthController {
 	 @PostMapping("/custlogin")
 	    public ResponseEntity<String> loginCustomer(@RequestBody LoginRequest loginRequest) {
 	        // Validate login credentials and return appropriate response
-	        if (isValidAdminLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
+	        if (isValidCustomerLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
 	            return ResponseEntity.ok("{\"success\": true}");
 	        } else {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false}");
@@ -58,6 +58,7 @@ public class AuthController {
 		User user = userService.findByUsername(username);
 	
 		 if (user != null && user.getPassword().equals(password) && user.getRole().equals("customer")) {
+				System.out.println("login as customer");
 	            return true;
 	        }
 		
@@ -67,7 +68,7 @@ public class AuthController {
 	@PostMapping("/adminlogin")
     public ResponseEntity<String> loginAdmin(@RequestBody LoginRequest loginRequest) {
         // Validate login credentials and return appropriate response
-        if (isValidCustomerLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
+        if (isValidAdminLogin(loginRequest.getUsername(), loginRequest.getPassword())) {
             return ResponseEntity.ok("{\"success\": true}");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false}");
@@ -78,7 +79,9 @@ public class AuthController {
 			User user = userService.findByUsername(username);
 		
 			 if (user != null && user.getPassword().equals(password) && user.getRole().equals("admin")) {
+				 	System.out.println("login as admin");
 		            return true;
+		            
 		        }
 			
 			return false;
